@@ -1,0 +1,312 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>agregar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formulario" (ngSubmit)="guardarProducto()">
+    <ion-item>
+      <ion-label position="floating">
+        Nombre
+      </ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="campo('nombre').invalid &&
+        errores('nombre') &&
+        errores('nombre').required &&
+        esTocado('nombre')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('nombre').invalid &&
+        errores('nombre') &&
+        errores('nombre').minlength &&
+        esTocado('nombre')"
+      >
+        El largo minimo es 3 caracteres
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('nombre').invalid &&
+        errores('nombre') &&
+        errores('nombre').maxlength &&
+        esTocado('nombre')"
+      >
+        El largo maximo son 15 caracteres
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Foto</ion-label>
+      <ion-input (change)="cambiarFoto($event)" formControlName="foto" type="file"></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="campo('foto').invalid &&
+        errores('foto') &&
+        errores('foto').required &&
+        esTocado('foto')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">
+        Stock
+      </ion-label>
+      <ion-range
+       formControlName="stock"
+        min="1"
+        max="1000"
+        [pin]="true"
+      ></ion-range>
+      <ion-note
+        slot="error"
+        *ngIf="campo('stock').invalid &&
+        errores('stock') &&
+        errores('stock').required &&
+        esTocado('stock')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('stock').invalid &&
+        errores('stock') &&
+        errores('stock').min &&
+        esTocado('stock')
+        "
+      >
+        Valor min 1
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('stock').invalid &&
+        errores('stock') &&
+        errores('stock').max &&
+        esTocado('stock')
+        "
+      >
+        Valor max 1000
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">
+        Altura
+      </ion-label>
+      <ion-range
+       formControlName="altura"
+        min="20"
+        max="100"
+        [pin]="true"
+      ></ion-range>
+      <ion-note
+        slot="error"
+        *ngIf="campo('altura').invalid &&
+        errores('altura') &&
+        errores('altura').required &&
+        esTocado('altura')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('altura').invalid &&
+        errores('altura') &&
+        errores('altura').min &&
+        esTocado('altura')
+        "
+      >
+        Valor min 20
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('altura').invalid &&
+        errores('altura') &&
+        errores('altura').max &&
+        esTocado('altura')
+        "
+      >
+        Valor max 100
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">
+        Peso
+      </ion-label>
+      <ion-range
+       formControlName="peso"
+        min="150"
+        max="400"
+        [pin]="true"
+      ></ion-range>
+      <ion-note
+        slot="error"
+        *ngIf="campo('peso').invalid &&
+        errores('peso') &&
+        errores('peso').required &&
+        esTocado('peso')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('peso').invalid &&
+        errores('peso') &&
+        errores('peso').min &&
+        esTocado('peso')
+        "
+      >
+        Valor min 150
+      </ion-note>
+      <ion-note
+        slot="error"
+        *ngIf="campo('peso').invalid &&
+        errores('peso') &&
+        errores('peso').max &&
+        esTocado('peso')
+        "
+      >
+        Valor max 400
+      </ion-note>
+    </ion-item>
+
+    <ion-label position="floating">
+      Descripcion
+    </ion-label>
+    <ion-input formControlName="descripcion" type="text"></ion-input>
+    <ion-note
+      slot="error"
+      *ngIf="campo('descripcion').invalid &&
+      errores('descripcion') &&
+      errores('descripcion').required &&
+      esTocado('descripcion')
+      "
+    >
+      Este campo es requerido
+    </ion-note>
+    <ion-note
+      slot="error"
+      *ngIf="campo('descripcion').invalid &&
+      errores('descripcion') &&
+      errores('descripcion').minlength &&
+      esTocado('descripcion')"
+    >
+      El largo minimo es 10 caracteres
+    </ion-note>
+    <ion-note
+      slot="error"
+      *ngIf="campo('descripcion').invalid &&
+      errores('descripcion') &&
+      errores('descripcion').maxlength &&
+      esTocado('descripcion')"
+    >
+      El largo maximo son 1000 caracteres
+    </ion-note>
+
+
+    <ion-item>
+      <ion-label position="stacked">Color</ion-label>
+      <ion-select formControlName="color" >
+        <ion-select-option
+          *ngFor="let color of colors"
+          [value]="color"
+        >
+          {{color}}
+        </ion-select-option>
+      </ion-select>
+      <ion-note
+        slot="error"
+        *ngIf="campo('color').invalid &&
+        errores('color') &&
+        errores('color').required &&
+        esTocado('color')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Marcas</ion-label>
+      <ion-select formControlName="marca" >
+        <ion-select-option
+          *ngFor="let marca of marcas"
+          [value]="marca"
+        >
+          {{marca}}
+        </ion-select-option>
+      </ion-select>
+      <ion-note
+        slot="error"
+        *ngIf="campo('marca').invalid &&
+        errores('marca') &&
+        errores('marca').required &&
+        esTocado('marca')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Hecho en</ion-label>
+      <ion-select formControlName="hechoEn" >
+        <ion-select-option
+          *ngFor="let hechoEn of hechoEns"
+          [value]="hechoEn"
+        >
+          {{hechoEn}}
+        </ion-select-option>
+      </ion-select>
+      <ion-note
+        slot="error"
+        *ngIf="campo('hechoEn').invalid &&
+        errores('hechoEn') &&
+        errores('hechoEn').required &&
+        esTocado('hechoEn')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+
+
+
+
+    <ion-item>
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-select formControlName="precio" >
+        <ion-select-option
+          *ngFor="let precio of precios"
+          [value]="precio"
+        >
+          {{precio}}
+        </ion-select-option>
+      </ion-select>
+      <ion-note
+        slot="error"
+        *ngIf="campo('precio').invalid &&
+        errores('precio') &&
+        errores('precio').required &&
+        esTocado('precio')
+        "
+      >
+        Este campo es requerido
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-button role="submit" type="submit" >
+        Agregar
+      </ion-button>
+    </ion-item>
+  </form>
+</ion-content>

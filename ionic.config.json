@@ -1,0 +1,7 @@
+{
+  "name": "CRUD productos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
